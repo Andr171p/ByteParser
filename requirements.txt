@@ -1,7 +1,7 @@
 requests~=2.32.3
 aiohttp~=3.10.8
 loguru~=0.7.2
-aiogram~=3.13.1
+aiogram~=3.0.0
 SQLAlchemy~=2.0.35
 redis~=5.1.0
 asyncpg~=0.29.0
