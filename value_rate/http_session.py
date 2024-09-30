@@ -22,7 +22,9 @@ class HTTPSession:
                 logger.info(http_logs.START_REQUEST_LOG.format(url=url))
                 async with session.get(
                         url=url,
-                        headers={'Content-Type': 'application/json'},
+                        headers={
+                            'Content-Type': 'application/json'
+                        },
                         timeout=timeout
                 ) as response:
                     if cls.is_ok(response=response):

@@ -26,6 +26,18 @@ class ORMManager(DataBaseSessionManager):
             await session.refresh(user)
         return user
 
+    async def delete_user(self, user_id: int) -> None:
+        async with self.session() as session:
+            user = await session.execute(
+                select(UserModel).where(UserModel.user_id == user_id)
+            )
+            user = user.scalar()
+            if user:
+                await session.delete(user)
+                await session.commit()
+            else:
+                raise Exception("User not found")
+
     async def get_user(self, user_id: int) -> UserModel:
         async with self.session() as session:
             user = await session.execute(

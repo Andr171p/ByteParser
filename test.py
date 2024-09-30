@@ -39,7 +39,7 @@ def get_exchange_rates_for_days(days):
     return dates[::-1], rates[::-1]  # Возвращаем даты и курсы в правильном порядке
 
 
-# Получаем курсы за последние 7 дней
+'''# Получаем курсы за последние 7 дней
 days = 10
 dates, exchange_rates = get_exchange_rates_for_days(days)
 
@@ -53,3 +53,4 @@ plt.xticks(rotation=45)
 plt.grid()
 plt.tight_layout()
 plt.show()
+'''

@@ -1,15 +1,18 @@
 from redis import Redis
 
 from storage.connection import RedisConnection
-from storage.structure import RedisStructure
 from storage.logs import RedisLogs
+from storage.structure import (
+    RedisValuesStructure,
+    RedisUserStructure
+)
 
 from loguru import logger
 
 from typing import List
 
 
-class RedisGet(RedisConnection):
+class RedisGetValues(RedisConnection):
     @staticmethod
     async def keys(redis: Redis) -> list:
         keys = await redis.keys('*')
@@ -26,18 +29,28 @@ class RedisGet(RedisConnection):
             timestamps.append(await redis.hget(key, 'timestamp'))
         return zip(usds, eurs, gbps, timestamps)
 
-    @classmethod
-    async def get(cls) -> List[dict]:
-        redis = await cls.connect()
-        keys = await cls.keys(redis=redis)
-        zipped = await cls.zipped(redis=redis, keys=keys)
+    async def get(self) -> List[dict]:
+        redis = await self.connect()
+        keys = await self.keys(redis=redis)
+        zipped = await self.zipped(redis=redis, keys=keys)
         data = [
-            RedisStructure(usd, eur, gbp, timestamp).data()
+            RedisValuesStructure(usd, eur, gbp, timestamp).data()
             for usd, eur, gbp, timestamp in zipped
         ]
         logger.info(RedisLogs.GET_DATA_LOG.format(data=data))
-        await cls.close()
+        await self.close()
         return data
 
 
-redis_get = RedisGet()
+class RedisGetUser(RedisConnection):
+    async def get(self, key: int | str) -> dict:
+        redis = await self.connect()
+        username = await redis.hget(key, 'username')
+        timestamp = await redis.hget(key, 'timestamp')
+        user = RedisUserStructure(
+            username=username,
+            timestamp=timestamp
+        ).data()
+        logger.info(RedisLogs.GET_DATA_LOG.format(data=user))
+        await self.close()
+        return user

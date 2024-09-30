@@ -3,9 +3,14 @@ class StartMessage:
 
 
 class UserNameMessage:
-    MESSAGE = "Теперь я буду обращаться к вам {username}"
+    REGISTER_MESSAGE = "Бот сохраняет ваше имя..."
+    MESSAGE = "Приятно познакомиться, теперь я буду обращаться к вам <b>{username}</b>"
 
 
 class ValueRateMessage:
-    MESSAGE = ("Здравстуйте {username}, текущий курс доллара к рублю состовляет:\n"
-               "{usd_rate}")
+    USD_MESSAGE = ("Здравстуйте {username}, текущий курс доллара к рублю состовляет:\n"
+                   "<b>{usd_rate}</b>")
+    EUR_MESSAGE = ("Здравстуйте {username}, текущий курс евро к рублю состовляет:\n"
+                   "<b>{eur_rate}</b>")
+    GBP_MESSAGE = ("Здравстуйте {username}, текущий курс фунтов стерлингов к рублю состовляет:\n"
+                   "<b>{gbp_rate}</b>")

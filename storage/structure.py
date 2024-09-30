@@ -1,14 +1,28 @@
-class RedisStructure:
-    def __init__(self, usd, eur, gbp, timestamp) -> None:
-        self.usd = usd.decode('utf-8')
-        self.eur = eur.decode('utf-8')
-        self.gbp = gbp.decode('utf-8')
-        self.timestamp = timestamp.decode('utf-8')
+class RedisValuesStructure:
+    def __init__(
+            self, usd: bytes | str, eur: bytes | str, gbp: bytes | str, timestamp: bytes | str
+    ) -> None:
+        self.__usd = usd.decode('utf-8')
+        self.__eur = eur.decode('utf-8')
+        self.__gbp = gbp.decode('utf-8')
+        self.__timestamp = timestamp.decode('utf-8')
 
     def data(self) -> dict:
         return {
-            'usd': self.usd,
-            'eur': self.eur,
-            'gbp': self.gbp,
-            'timestamp': self.timestamp
+            'usd': self.__usd,
+            'eur': self.__eur,
+            'gbp': self.__gbp,
+            'timestamp': self.__timestamp
+        }
+
+
+class RedisUserStructure:
+    def __init__(self, username: bytes | str, timestamp: bytes | str) -> None:
+        self.__username = username.decode('utf-8')
+        self.__timestamp = timestamp.decode('utf-8')
+
+    def data(self) -> dict:
+        return {
+            'username': self.__username,
+            'timestamp': self.__timestamp
         }
