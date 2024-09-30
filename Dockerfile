@@ -1,6 +1,6 @@
 FROM python: 3.11
 
-WORKDIR /test_task_app
+WORKDIR /app
 
 COPY requirements.txt .
 
