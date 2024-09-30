@@ -5,6 +5,8 @@ from database.models.users_model import UserModel
 
 from typing import Sequence
 
+from loguru import logger
+
 
 class ORMManager(DataBaseSessionManager):
     def __init__(self) -> None:
@@ -35,8 +37,9 @@ class ORMManager(DataBaseSessionManager):
             try:
                 await session.delete(user)
                 await session.commit()
-            except:
-                raise Exception("User not found")
+            except Exception as _ex:
+                # raise Exception("User not found")
+                logger.warning(_ex)
 
     async def get_user(self, user_id: int) -> UserModel:
         async with self.session() as session:
