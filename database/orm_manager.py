@@ -32,10 +32,10 @@ class ORMManager(DataBaseSessionManager):
                 select(UserModel).where(UserModel.user_id == user_id)
             )
             user = user.scalar()
-            if user:
+            try:
                 await session.delete(user)
                 await session.commit()
-            else:
+            except:
                 raise Exception("User not found")
 
     async def get_user(self, user_id: int) -> UserModel:
