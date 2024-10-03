@@ -8,9 +8,9 @@ class UserNameMessage:
 
 
 class ValueRateMessage:
-    USD_MESSAGE = ("Здравстуйте {username}, текущий курс доллара к рублю состовляет:\n"
+    USD_MESSAGE = ("Здравстуйте {username}, текущий курс доллара к рублю составляет:\n"
                    "<b>{usd_rate}</b>")
-    EUR_MESSAGE = ("Здравстуйте {username}, текущий курс евро к рублю состовляет:\n"
+    EUR_MESSAGE = ("Здравстуйте {username}, текущий курс евро к рублю составляет:\n"
                    "<b>{eur_rate}</b>")
-    GBP_MESSAGE = ("Здравстуйте {username}, текущий курс фунтов стерлингов к рублю состовляет:\n"
+    GBP_MESSAGE = ("Здравстуйте {username}, текущий курс фунтов стерлингов к рублю составляет:\n"
                    "<b>{gbp_rate}</b>")
